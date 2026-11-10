@@ -18,6 +18,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 $(call inherit-product, vendor/pantech/ef52/ef52-vendor.mk)
 
+PRODUCT_SOONG_NAMESPACES += device/pantech/ef52/nfc/legacy
+
 DEVICE_PACKAGE_OVERLAYS += device/pantech/ef52/overlay
 
 # Device uses high-density artwork where available
@@ -31,6 +33,10 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 # Lights
 PRODUCT_PACKAGES += \
 	lights.msm8960
+
+# LiveDisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service.ef52
 
 # audio UCM files
 #PRODUCT_COPY_FILES += \
@@ -65,11 +71,16 @@ PRODUCT_COPY_FILES += \
 	device/pantech/ef52/thermald/thermald-8064_ef52.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-8064.conf \
 	device/pantech/ef52/thermald/thermald-8064ab_ef52.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-8064ab.conf
 
-PRODUCT_PACKAGES += \
-    Torch
-
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=300
 
-# Inherit from msm8974-common
+# Inherit from msm8960-common
 $(call inherit-product, device/pantech/msm8960-common/msm8960.mk)
+
+# PN544 uses the legacy NXP HCI stack and the proprietary board HAL.
+PRODUCT_PACKAGES += NfcPn544 Tag
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml
+
+# Reject early modem requests until the stock QCRIL has initialized QMI.
+PRODUCT_PACKAGES += libril_ef52

@@ -50,3 +50,18 @@ EF52_USE_KITKAT_SENSORS := yes
 
 #TWRP screen config
 DEVICE_RESOLUTION := 720x1280
+
+# Kernel builder shown in the kernel version
+TARGET_KERNEL_ADDITIONAL_FLAGS += KBUILD_BUILD_USER=abyssobject KBUILD_BUILD_HOST=abyssobject
+
+# Boot bring-up on Android 13 (as on the VEGA S5):
+# boot_devices: first-stage init creates the by-name links for this eMMC
+# controller. init_fatal_reboot_target: a fatal init error reboots warm into
+# recovery (TWRP), where the RAM console keeps the log (/proc/last_kmsg),
+# instead of into the bootloader.
+BOARD_KERNEL_CMDLINE += androidboot.boot_devices=msm_sdcc.1 \
+    androidboot.init_fatal_reboot_target=recovery
+
+# GPS: libloc_eng.so calls set_sched_policy, which Android 13 has in
+# libprocessgroup (see fixes-ef52.py)
+TARGET_LD_SHIM_LIBS += /system/vendor/lib/libloc_eng.so|libprocessgroup.so

@@ -626,6 +626,11 @@ public class HandoverDataParser {
         buffer.put(btClass);
         buffer.order(ByteOrder.LITTLE_ENDIAN);
 
-        return new BluetoothClass(buffer.getInt(0));
+        android.os.Parcel parcel = android.os.Parcel.obtain();
+        parcel.writeInt(buffer.getInt(0));
+        parcel.setDataPosition(0);
+        BluetoothClass bluetoothClass = BluetoothClass.CREATOR.createFromParcel(parcel);
+        parcel.recycle();
+        return bluetoothClass;
     }
 }

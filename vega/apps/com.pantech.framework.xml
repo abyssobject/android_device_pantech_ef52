@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantech framework library used by VEGA Home and Design Home -->
+<permissions>
+    <library name="com.pantech.framework"
+            file="/system/framework/com.pantech.framework.jar" />
+</permissions>

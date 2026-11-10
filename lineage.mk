@@ -29,7 +29,7 @@ $(call inherit-product, device/pantech/ef52/full_ef52.mk)
 PRODUCT_DEVICE := ef52
 PRODUCT_NAME := lineage_ef52
 PRODUCT_BRAND := Vega
-PRODUCT_MODEL := Vega Iron
+PRODUCT_MODEL := IM-A870
 PRODUCT_MANUFACTURER := Vega
 
 TARGET_VENDOR := Pantech

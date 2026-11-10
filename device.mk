@@ -72,7 +72,7 @@ PRODUCT_COPY_FILES += \
 	device/pantech/ef52/thermald/thermald-8064ab_ef52.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-8064ab.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=300
+	ro.sf.lcd_density=360
 
 # Inherit from msm8960-common
 $(call inherit-product, device/pantech/msm8960-common/msm8960.mk)
@@ -84,3 +84,12 @@ PRODUCT_COPY_FILES += \
 
 # Reject early modem requests until the stock QCRIL has initialized QMI.
 PRODUCT_PACKAGES += libril_ef52
+
+# VEGA resources (apps, sounds, fonts, wallpapers, VEGA Iron specs)
+$(call inherit-product, device/pantech/ef52/vega/vega.mk)
+
+# ef52 (Adreno 320) SurfaceFlinger GPU composition: framebuffer EGLImage
+# cache >= FramebufferSurface buffers, own texture + FBO per output buffer
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.vega.sf_fb_image_cache=4 \
+    ro.vega.sf_fbo_per_image=1

@@ -1966,8 +1966,9 @@ public class NfcService implements DeviceHostListener {
                 tag.findAndReadNdef();
                 // Build a new Tag object to return
                 try {
+                    mCookieUpToDate = new java.security.SecureRandom().nextLong() >>> 1;
                     Tag newTag = new Tag(tag.getUid(), tag.getTechList(),
-                            tag.getTechExtras(), tag.getHandle(), this);
+                            tag.getTechExtras(), tag.getHandle(), mCookieUpToDate, this);
                     return newTag;
                 } catch (Exception e) {
                     Log.e(TAG, "Tag creation exception.", e);
@@ -2017,7 +2018,7 @@ public class NfcService implements DeviceHostListener {
             return mDeviceHost.getExtendedLengthApdusSupported();
         }
 
-        @Override
+        // Not in INfcTag since Android 13
         public void setTagUpToDate(long cookie) throws RemoteException {
             if (DBG) Log.d(TAG, "Register Tag " + Long.toString(cookie) + " as the latest");
             mCookieUpToDate = cookie;
@@ -2566,9 +2567,10 @@ public class NfcService implements DeviceHostListener {
                     extras.putInt(Ndef.EXTRA_NDEF_MAXLENGTH, 0);
                     extras.putInt(Ndef.EXTRA_NDEF_CARDSTATE, Ndef.NDEF_MODE_READ_ONLY);
                     extras.putInt(Ndef.EXTRA_NDEF_TYPE, Ndef.TYPE_OTHER);
+                    mCookieUpToDate = new java.security.SecureRandom().nextLong() >>> 1;
                     Tag tag = Tag.createMockTag(new byte[]{0x00},
                             new int[]{TagTechnology.NDEF},
-                            new Bundle[]{extras});
+                            new Bundle[]{extras}, mCookieUpToDate);
                     Log.d(TAG, "mock NDEF tag, starting corresponding activity");
                     Log.d(TAG, tag.toString());
                     int dispatchStatus = mNfcDispatcher.dispatchTag(tag);
@@ -2833,8 +2835,8 @@ public class NfcService implements DeviceHostListener {
             try {
                 String reader = new String(readerByteArray, "UTF-8");
                 String[] installedPackages = new String[mNfcEventInstalledPackages.size()];
-                boolean[] nfcAccess = mSEService.isNFCEventAllowed(reader, aid,
-                        mNfcEventInstalledPackages.toArray(installedPackages));
+                boolean[] nfcAccess = mSEService.isNfcEventAllowed(reader, aid,
+                        mNfcEventInstalledPackages.toArray(installedPackages), android.app.ActivityManager.getCurrentUser());
                 if (nfcAccess == null) {
                     return;
                 }
@@ -2861,7 +2863,7 @@ public class NfcService implements DeviceHostListener {
                     }
                 }
             } catch (RemoteException e) {
-                Log.e(TAG, "Error in isNFCEventAllowed() " + e);
+                Log.e(TAG, "Error in isNfcEventAllowed() " + e);
             } catch (UnsupportedEncodingException e) {
                 Log.e(TAG, "Incorrect format for Secure Element name" + e);
             }
@@ -2887,8 +2889,8 @@ public class NfcService implements DeviceHostListener {
             String[] installedPackages = new String[mNfcEventInstalledPackages.size()];
             for (String reader : readers) {
                 try {
-                    boolean[] accessList = mSEService.isNFCEventAllowed(reader, null,
-                            mNfcEventInstalledPackages.toArray(installedPackages));
+                    boolean[] accessList = mSEService.isNfcEventAllowed(reader, null,
+                            mNfcEventInstalledPackages.toArray(installedPackages), android.app.ActivityManager.getCurrentUser());
                     if (accessList == null) {
                         continue;
                     }
@@ -2901,7 +2903,7 @@ public class NfcService implements DeviceHostListener {
                         }
                     }
                 } catch (RemoteException e) {
-                    Log.e(TAG, "Error in isNFCEventAllowed() " + e);
+                    Log.e(TAG, "Error in isNfcEventAllowed() " + e);
                 }
             }
             if (nfcAccessFinal == null) {
@@ -2949,9 +2951,9 @@ public class NfcService implements DeviceHostListener {
                     new String[mNfcPreferredPaymentChangedInstalledPackages.size()];
             for (String reader : readers) {
                 try {
-                    boolean[] accessList = mSEService.isNFCEventAllowed(reader, null,
+                    boolean[] accessList = mSEService.isNfcEventAllowed(reader, null,
                             mNfcPreferredPaymentChangedInstalledPackages.toArray(installedPackages)
-                            );
+                            , android.app.ActivityManager.getCurrentUser());
                     if (accessList == null) {
                         continue;
                     }
@@ -2964,7 +2966,7 @@ public class NfcService implements DeviceHostListener {
                         }
                     }
                 } catch (RemoteException e) {
-                    Log.e(TAG, "Error in isNFCEventAllowed() " + e);
+                    Log.e(TAG, "Error in isNfcEventAllowed() " + e);
                 }
             }
             if (nfcAccessFinal == null) {
@@ -3072,8 +3074,10 @@ public class NfcService implements DeviceHostListener {
 
         private void dispatchTagEndpoint(TagEndpoint tagEndpoint, ReaderModeParams readerParams) {
             try {
+                mCookieUpToDate = new java.security.SecureRandom().nextLong() >>> 1;
                 Tag tag = new Tag(tagEndpoint.getUid(), tagEndpoint.getTechList(),
-                        tagEndpoint.getTechExtras(), tagEndpoint.getHandle(), mNfcTagService);
+                        tagEndpoint.getTechExtras(), tagEndpoint.getHandle(),
+                        mCookieUpToDate, mNfcTagService);
                 registerTagObject(tagEndpoint);
                 if (readerParams != null) {
                     try {

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef52: the VEGA Iron 2's dialogs (AlertDialog.DeviceDefault: navy pieces,
+     blue title line, Iron 2 buttons and choice lists) for the dialog themes
+     that still showed Material dialogs. Theme.DeviceDefault.Dialog.Alert and
+     AlertDialog.DeviceDefault already carry the Iron 2 dialog (framework-res,
+     EF44_VEGA_DIALOG); aapt2 merges overlay styles, so these only add items or
+     move the parent. -->
+<resources>
+    <!-- RingtonePickerActivity (SoundPicker), SystemUI's ForegroundServicesDialog
+         and other AlertActivities themed Settings.Dialog: the Iron 2 alert
+         window instead of the light Material dialog -->
+    <style name="Theme.DeviceDefault.Settings.Dialog" parent="Theme.DeviceDefault.Dialog.Alert" />
+    <style name="Theme.DeviceDefault.Settings.Dialog.Alert" parent="Theme.DeviceDefault.Dialog.Alert" />
+
+    <!-- apps themed straight from Material get the Iron 2 alert dialog too
+         (their parent cannot move: Theme.DeviceDefault.Dialog.Alert extends them;
+         the parent is spelled out, or aapt2 would take the name's prefix) -->
+    <style name="Theme.Material.Dialog.Alert" parent="Theme.Material.Dialog.BaseAlert">
+        <item name="windowBackground">@color/transparent</item>
+        <item name="windowElevation">0dp</item>
+        <item name="alertDialogStyle">@style/AlertDialog.DeviceDefault</item>
+        <item name="textColorAlertDialogListItem">@color/primary_text_holo_dark</item>
+        <item name="listChoiceIndicatorSingle">@drawable/zz_ef44_pt_btn_radio_holo_dark</item>
+        <item name="listChoiceIndicatorMultiple">@drawable/zz_ef44_pt_btn_check_holo_dark</item>
+        <item name="listChoiceBackgroundIndicator">@drawable/zz_ef44_pt_list_selector_holo_dark</item>
+    </style>
+    <style name="Theme.Material.Light.Dialog.Alert" parent="Theme.Material.Light.Dialog.BaseAlert">
+        <item name="windowBackground">@color/transparent</item>
+        <item name="windowElevation">0dp</item>
+        <item name="alertDialogStyle">@style/AlertDialog.DeviceDefault</item>
+        <item name="textColorAlertDialogListItem">@color/primary_text_holo_dark</item>
+        <item name="listChoiceIndicatorSingle">@drawable/zz_ef44_pt_btn_radio_holo_dark</item>
+        <item name="listChoiceIndicatorMultiple">@drawable/zz_ef44_pt_btn_check_holo_dark</item>
+        <item name="listChoiceBackgroundIndicator">@drawable/zz_ef44_pt_list_selector_holo_dark</item>
+    </style>
+</resources>

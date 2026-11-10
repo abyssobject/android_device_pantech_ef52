@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- VEGA Messages (com.pantech.app.mms, vega/apps/Android.mk) replaces
+         LineageOS's Messaging and is the default SMS app -->
+    <string name="config_defaultSms" translatable="false">com.pantech.app.mms</string>
+    <!-- ef52: the VEGA no-SIM icon (StatusBarSignalPolicy.setNoSims) right after
+         the mobile signal, as on the VEGA Iron 2 -->
+    <string-array name="config_statusBarIcons">
+        <item><xliff:g id="id">@string/status_bar_no_calling</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_call_strength</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_alarm_clock</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_rotate</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_headset</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_data_saver</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_ime</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_sync_failing</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_sync_active</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_nfc</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_tty</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_speakerphone</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_cdma_eri</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_data_connection</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_phone_evdo_signal</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_phone_signal</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_secure</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_managed_profile</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_cast</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_screen_record</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_vpn</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_bluetooth</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_camera</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_microphone</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_location</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_mute</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_volume</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_zen</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_ethernet</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_wifi</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_hotspot</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_mobile</xliff:g></item>
+        <item><xliff:g id="id">vega_no_sim</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_airplane</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_battery</xliff:g></item>
+        <item><xliff:g id="id">@string/status_bar_sensors_off</xliff:g></item>
+    </string-array>
+</resources>

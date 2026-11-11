@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef44: the VEGA Iron 2's "About phone" screen: its BlackPT action bar
+     (48dp, pt_ab_transparent_holo_dark, back arrow, 21dp #fafafa title) over
+     a Pantech preference list (pt_preference_list_fragment: no padding,
+     pt_list_divider_holo_dark, pt_list_selector_holo_dark) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ef44_pt_screen_background_dark"
+    android:fitsSystemWindows="true"
+    android:clipChildren="true"
+    android:clipToPadding="true">
+    <!-- clip on: Theme.Settings turns clipping off for every view group, so
+         the list's rows scrolled up drew behind the action bar -->
+
+    <LinearLayout
+        android:id="@+id/ef44_ab"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/ef44_pt_ab_transparent_holo_dark">
+
+        <LinearLayout
+            android:id="@+id/ef44_ab_up"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/abc_action_bar_up_description"
+            android:background="@drawable/ef44_pt_item_background_holo_dark">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="-4dp"
+                android:src="@drawable/ef44_pt_ic_ab_back_holo_dark"
+                android:importantForAccessibility="no" />
+            <!-- ef52: the Iron 2 action bar's Settings gear after the up arrow -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ef44_vega_ab_settings"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:id="@+id/ef44_ab_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="21dp"
+                android:textColor="#fffafafa" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:clipToPadding="false"
+        android:drawSelectorOnTop="false"
+        android:cacheColorHint="@android:color/transparent"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:divider="@drawable/ef44_pt_list_divider_holo_dark"
+        android:listSelector="@drawable/ef44_pt_list_selector_holo_dark" />
+</LinearLayout>

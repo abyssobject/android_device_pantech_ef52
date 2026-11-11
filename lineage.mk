@@ -29,7 +29,7 @@ $(call inherit-product, device/pantech/ef52/full_ef52.mk)
 PRODUCT_DEVICE := ef52
 PRODUCT_NAME := lineage_ef52
 PRODUCT_BRAND := Vega
-PRODUCT_MODEL := Vega Iron
+PRODUCT_MODEL := IM-A870
 PRODUCT_MANUFACTURER := Vega
 
 TARGET_VENDOR := Pantech
@@ -42,3 +42,11 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="msm8960-user 4.4.2 KOT49H IM-A870K.010 release-keys" 
 
 BUILD_FINGERPRINT := VEGA/VEGA_IM-A870K/ef52k:4.4.2/KOT49H/IM-A870K.010:user/release-keys
+
+# Missing HALs must fail validation instead of disappearing from the image.
+# Inherited AOSP apps are replaced by Lineage apps. The remaining entries
+# are optional base-product variants/tools absent from this source checkout.
+$(call enforce-product-packages-exist, \
+    Browser2 Calendar Launcher3QuickStep Music MusicFX QuickSearchBox \
+    android.hidl.memory@1.0-impl.vendor product_manifest.xml \
+    vndk_apex_snapshot_package 7z lib7z pigz unrar zip)

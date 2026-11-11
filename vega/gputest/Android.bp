@@ -1,0 +1,22 @@
+// ef52 GPU test (OpenGL ES 3.0 correctness + 3D/fill-rate performance).
+// Not in PRODUCT_PACKAGES: build with `m ef52_gputest` and push to the phone.
+cc_binary {
+    name: "ef52_gputest",
+    srcs: ["gputest.cpp"],
+    shared_libs: [
+        "libEGL",
+        "libGLESv2",
+        "libGLESv3",
+        "libgui",
+        "libui",
+        "libutils",
+    ],
+    static_libs: ["libglTest"],
+    cflags: [
+        "-DGL_GLEXT_PROTOTYPES",
+        "-DEGL_EGLEXT_PROTOTYPES",
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-parameter",
+    ],
+}

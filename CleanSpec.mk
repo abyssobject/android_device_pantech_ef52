@@ -52,4 +52,8 @@ $(call add-clean-step, rm -rf $(PRODUCT_OUT)/obj/SHARED_LIBRARIES/libhardware_le
 $(call add-clean-step, rm -f $(OUT_DIR)/target/product/ef52/system/build.prop)
 $(call add-clean-step, rm -f $(OUT_DIR)/target/product/ef52/root/default.prop)
 $(call add-clean-step, rm -f $(OUT_DIR)/target/product/ef52/recovery/root/default.prop)
-$(call add-clean-step, cd $(ANDROID_BUILD_TOP)/hardware/libhardware_legacy && git reset --hard HEAD)
+# Preserve the step number without resetting a source repository.
+$(call add-clean-step, true)
+
+# /cache is a separate partition, not the legacy /data/cache symlink.
+$(call add-clean-step, if [ -L $(PRODUCT_OUT)/root/cache ]; then rm -f $(PRODUCT_OUT)/root/cache; fi)

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- VEGA "Android version" page: the VEGA Iron (ef52, APQ8064T) -->
+<resources>
+    <string name="ef44_cpu_info">Qualcomm® Snapdragon™ 600 Processor</string>
+</resources>

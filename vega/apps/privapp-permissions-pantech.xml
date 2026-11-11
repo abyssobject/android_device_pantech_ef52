@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Privileged platform permissions the ported VEGA Iron 2 apps request
+     (ro.control_privapp_permissions=enforce refuses to boot without them) -->
+<permissions>
+    <!-- VEGA Home: binds widgets on the home screen -->
+    <privapp-permissions package="com.pantech.launcher3">
+        <permission name="android.permission.BIND_APPWIDGET" />
+    </privapp-permissions>
+
+    <!-- Icon styles: removes icon packs -->
+    <privapp-permissions package="com.pantech.app.iconstyleagent">
+        <permission name="android.permission.DELETE_PACKAGES" />
+    </privapp-permissions>
+
+    <!-- Design Home: saves designs to internal storage -->
+    <privapp-permissions package="com.pantech.homedeco">
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
+    </privapp-permissions>
+
+    <!-- VEGA Music: playlists, lyrics and album art on internal storage -->
+    <privapp-permissions package="com.pantech.app.music">
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
+    </privapp-permissions>
+
+    <!-- File Manager: copies, moves and deletes on the microSD card -->
+    <privapp-permissions package="com.pantech.filemanager">
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
+    </privapp-permissions>
+
+    <!-- VEGA Clock: alarm sounds on internal storage; its alarm and timer
+         screens open from its broadcast receivers -->
+    <privapp-permissions package="com.android.deskclock">
+        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND" />
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
+    </privapp-permissions>
+
+    <!-- VEGA Dialer (com.android.dialer, in place of LineageOS Dialer, whose
+         own allowlist may go with it): places calls, clears the missed call
+         notification, plays ringback/DTMF media, service codes -->
+    <privapp-permissions package="com.android.dialer">
+        <permission name="android.permission.ALLOW_ANY_CODEC_FOR_PLAYBACK" />
+        <permission name="android.permission.CALL_PRIVILEGED" />
+        <permission name="android.permission.CONNECTIVITY_INTERNAL" />
+        <permission name="android.permission.MODIFY_PHONE_STATE" />
+        <permission name="android.permission.REBOOT" />
+        <permission name="android.permission.STOP_APP_SWITCHES" />
+    </privapp-permissions>
+
+    <!-- VEGA Contacts (com.android.contacts, 전화부, in place of LineageOS
+         Contacts): calls and its ringback/DTMF media from a contact, contact
+         photos and vCards on internal storage, its SIM phonebook -->
+    <privapp-permissions package="com.android.contacts">
+        <permission name="android.permission.ALLOW_ANY_CODEC_FOR_PLAYBACK" />
+        <permission name="android.permission.CALL_PRIVILEGED" />
+        <permission name="android.permission.MODIFY_PHONE_STATE" />
+        <permission name="android.permission.REBOOT" />
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
+    </privapp-permissions>
+
+    <!-- VEGA Messages (com.pantech.app.mms, in place of LineageOS Messaging):
+         call from a message, quick replies, emergency broadcasts, MMS APN,
+         its log viewer -->
+    <privapp-permissions package="com.pantech.app.mms">
+        <permission name="android.permission.CALL_PRIVILEGED" />
+        <permission name="android.permission.MODIFY_PHONE_STATE" />
+        <permission name="android.permission.READ_LOGS" />
+        <permission name="android.permission.RECEIVE_EMERGENCY_BROADCAST" />
+        <permission name="android.permission.SEND_RESPOND_VIA_MESSAGE" />
+        <permission name="android.permission.WRITE_APN_SETTINGS" />
+    </privapp-permissions>
+
+    <!-- VEGA Voice Recorder (녹음기): its recordings on internal storage -->
+    <privapp-permissions package="com.pantech.app.voicerecorder">
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
+    </privapp-permissions>
+
+    <!-- VEGA Camera (카메라): pictures and videos on internal storage and the
+         microSD card, its settings, battery level checks while recording -->
+    <privapp-permissions package="com.pantech.app.vegacamera">
+        <permission name="android.permission.BATTERY_STATS" />
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
+    </privapp-permissions>
+
+    <!-- VEGA Sound Effect: turns its own receivers on and off when another
+         effects app is picked -->
+    <privapp-permissions package="com.pantech.app.musicfx">
+        <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
+    </privapp-permissions>
+</permissions>

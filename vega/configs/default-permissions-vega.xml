@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The VEGA Iron 2 lock screen (SystemUI's VegaLockView) shows buttons for
+     new missed calls and unread messages, as the Iron 2's did -->
+<exceptions>
+    <exception package="com.android.systemui">
+        <permission name="android.permission.READ_CALL_LOG" fixed="true" />
+        <permission name="android.permission.READ_SMS" fixed="true" />
+    </exception>
+</exceptions>

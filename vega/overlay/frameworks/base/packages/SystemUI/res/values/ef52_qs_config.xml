@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef52: the VEGA Iron 2 quick settings with its LED tile (fixes-ef52.py) -->
+<resources>
+    <string name="quick_settings_tiles_default" translatable="false">
+        sound,wifi,cell,location,rotation,bt,nfc,airplane,sync,dnd,cast,hotspot,battery,vegaled
+    </string>
+</resources>

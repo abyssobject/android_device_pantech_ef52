@@ -1,0 +1,15 @@
+// ef52 silent hardware test (sensors, microphone level). Not in
+// PRODUCT_PACKAGES: build with `m ef52_hwtest` and push to the phone.
+cc_binary {
+    name: "ef52_hwtest",
+    srcs: ["hwtest.cpp"],
+    shared_libs: [
+        "libaaudio",
+        "libandroid",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-parameter",
+    ],
+}

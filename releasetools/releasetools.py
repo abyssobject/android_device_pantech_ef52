@@ -14,10 +14,24 @@
 # limitations under the License.
 #
 
+import common
+
+def FullOTA_InstallBegin(info):
+    # ef52: no backuptool.sh (addon.d) backup/restore; GApps are flashed
+    # separately after the ROM when wanted.
+    common.OPTIONS.backuptool = False
+
 def FullOTA_InstallEnd(info):
-    info.script.Mount("/system")
-    # Recovery mounts the Android 11 system root at /system.
+    # Mount the system-as-root image away from /system: TWRP's own shell
+    # lives under /system/bin and would be shadowed by the ROM.
+    dev = "/dev/block/platform/msm_sdcc.1/by-name/system"
+    info.script.AppendExtra('run_program("/sbin/umount", "/system");')
     info.script.AppendExtra(
-        'assert(run_program("/sbin/sh", "/system/system/bin/device_check.sh", '
-        '"/system/system") == 0);')
-    info.script.Unmount("/system")
+        'mount("ext4", "EMMC", "%s", "/mnt/system", "");' % dev)
+    info.script.AppendExtra(
+        'ifelse(run_program("/sbin/sh", "/mnt/system/system/bin/device_check.sh", '
+        '"/mnt/system/system") == 0, ui_print("EF52 firmware variant installed"), '
+        'ifelse(run_program("/system/bin/sh", "/mnt/system/system/bin/device_check.sh", '
+        '"/mnt/system/system") == 0, ui_print("EF52 firmware variant installed"), '
+        'abort("E3001: device_check.sh failed (EF52 firmware variant)")));')
+    info.script.AppendExtra('unmount("/mnt/system");')

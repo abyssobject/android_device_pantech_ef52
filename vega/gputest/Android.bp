@@ -20,3 +20,19 @@ cc_binary {
         "-Wno-unused-parameter",
     ],
 }
+
+// ef52 small-pbuffer GPU test (WebView EGL_CONTEXT_LOST investigation):
+// `m ef52_pbtest`, push, run, then check dmesg for kgsl page faults.
+cc_binary {
+    name: "ef52_pbtest",
+    srcs: ["pbtest.cpp"],
+    shared_libs: [
+        "libEGL",
+        "libGLESv2",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-parameter",
+    ],
+}

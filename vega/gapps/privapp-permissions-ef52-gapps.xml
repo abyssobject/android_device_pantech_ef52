@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ef52: allowlist entries that Android 13 needs but some GApps packages
+  (LiteGapps PixelSetupWizard, 2026-11-11) do not ship. Without it
+  system_server throws "Signature|privileged permissions not in
+  privapp-permissions allowlist" in onSystemReady and the phone loops on
+  the boot animation. Harmless when the package is not installed.
+-->
+<permissions>
+    <privapp-permissions package="com.google.android.pixel.setupwizard">
+        <permission name="android.permission.DISPATCH_PROVISIONING_MESSAGE"/>
+    </privapp-permissions>
+</permissions>

@@ -1,0 +1,6 @@
+// ef52: VEGA camera dialog pieces (see AndroidManifest.xml)
+runtime_resource_overlay {
+    name: "Ef52VegaCameraOverlay",
+    product_specific: true,
+    sdk_version: "current",
+}

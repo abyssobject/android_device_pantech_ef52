@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef52: the VEGA camera's xxhdpi dialog title piece at every density -->
+<nine-patch xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/ef52_cam_dialog_top_xx" />

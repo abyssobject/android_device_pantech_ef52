@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef52: LineageOS's setup wizard on first boot even with GApps. Google's
+     setup wizard (from a GApps zip) is not installed for any user, so
+     LineageSetupWizard does not hand over to it (SetupWizardUtils.hasGMS).
+     Google accounts are added later in Settings > Accounts. -->
+<config>
+    <install-in-user-type package="com.google.android.setupwizard">
+        <do-not-install-in user-type="FULL" />
+        <do-not-install-in user-type="SYSTEM" />
+        <do-not-install-in user-type="PROFILE" />
+    </install-in-user-type>
+    <install-in-user-type package="com.google.android.pixel.setupwizard">
+        <do-not-install-in user-type="FULL" />
+        <do-not-install-in user-type="SYSTEM" />
+        <do-not-install-in user-type="PROFILE" />
+    </install-in-user-type>
+</config>

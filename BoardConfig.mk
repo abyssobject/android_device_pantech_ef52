@@ -54,6 +54,10 @@ DEVICE_RESOLUTION := 720x1280
 # Kernel builder shown in the kernel version
 TARGET_KERNEL_ADDITIONAL_FLAGS += KBUILD_BUILD_USER=abyssobject KBUILD_BUILD_HOST=abyssobject
 
+# Boot animation: the VEGA Iron 2's (bootanim/make-bootanim.sh: 720x1280,
+# no boot sound) instead of LineageOS's generated one
+TARGET_BOOTANIMATION := device/pantech/ef52/bootanim/bootanimation.zip
+
 # Boot bring-up on Android 13 (as on the VEGA S5):
 # boot_devices: first-stage init creates the by-name links for this eMMC
 # controller. init_fatal_reboot_target: a fatal init error reboots warm into

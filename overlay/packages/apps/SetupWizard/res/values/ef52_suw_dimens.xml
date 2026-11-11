@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef52: setupdesign pulls radio buttons 6dp left (-6dp) to hide the
+     Material button's transparent inset. The VEGA (Iron 2) radio/check
+     images fill their bounds, so that cut their left side off. -->
+<resources>
+    <dimen name="sud_radio_button_margin_start">0dp</dimen>
+</resources>

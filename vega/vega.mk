@@ -28,14 +28,24 @@ PRODUCT_SYSTEM_PROPERTIES += \
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.vega.signal=1
 
-# LineageOS setup wizard with the VEGA Iron 2 setup wizard's look
-PRODUCT_SYSTEM_PROPERTIES += \
-    ro.vega.setupwizard=1
-
 # Settings panels (internet, volume): the VEGA Iron 2's Wi-Fi icons, on/off
 # buttons and seek bars (Settings VegaPanelStyle, fixes-ef52.py)
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.vega.panels=1
+
+# VEGA lock screen labels re-read on a locale change (fixes-ef52.py)
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.vega.kg_locale_refresh=1
+
+# VEGA Iron 2 "USB 연결 방식" page (Settings ef52.VegaUsbSettingsActivity,
+# UsbDeviceManager; fixes-ef52.py)
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.vega.usb=1
+
+# Bluetooth: tolerate the WCN3660's COMMAND_DISALLOWED for LE scan enable
+# (GD LeScanningManager aborted com.android.bluetooth; fixes-ef52.py)
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.vega.bt_scan_tolerant=1
 
 # VEGA Iron 2 home (VEGA Home), its icon styles and icon packs, Design Home,
 # the wallpaper popup, the VEGA keyboard, VEGA Music and Sound Effect, File
@@ -114,3 +124,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(foreach f,$(wildcard $(VEGA_PATH)/fonts/*.ttf),\
         $(f):$(TARGET_COPY_OUT_SYSTEM)/fonts/$(notdir $(f)))
+
+# GApps: allowlist entries Android 13 needs that LiteGapps' PixelSetupWizard
+# lacks (system_server boot loop otherwise). Unused when no GApps.
+PRODUCT_COPY_FILES += \
+    $(VEGA_PATH)/gapps/privapp-permissions-ef52-gapps.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-ef52-gapps.xml

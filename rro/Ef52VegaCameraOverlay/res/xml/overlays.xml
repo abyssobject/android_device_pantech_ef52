@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<overlay>
+    <!-- title piece of the rotate dialogs: the xxhdpi image only, so it
+         scales together with pt_dialog_middle_holo_light (xxhdpi only) -->
+    <item target="drawable/pt_dialog_top_holo_light" value="@drawable/ef52_cam_dialog_top" />
+</overlay>

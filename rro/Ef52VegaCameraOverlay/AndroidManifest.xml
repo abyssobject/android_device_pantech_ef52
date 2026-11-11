@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef52: VEGA camera dialog title piece at xxhdpi like its body piece
+     (camera/port-cam-res.sh). The VEGA camera APK is not modified. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.lineageos.overlay.ef52.vegacamera">
+    <overlay
+        android:targetPackage="com.pantech.app.vegacamera"
+        android:isStatic="true"
+        android:priority="1"
+        android:resourcesMap="@xml/overlays" />
+    <application android:hasCode="false" />
+</manifest>

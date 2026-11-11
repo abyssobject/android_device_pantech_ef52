@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ef52: apps themed Theme.Material / Theme.Material.Light (e.g. Gallery's
+     "선택한 항목을 삭제할까요?") build AlertDialogs with alertDialogTheme =
+     ThemeOverlay.Material.Dialog.Alert, which the VEGA dialog port did not
+     cover, so they showed the grey Material dialog. This overlay gives them
+     the VEGA Iron 2 dialog (AlertDialog.DeviceDefault: navy pieces, blue
+     title line, Iron 2 buttons and choice lists) like
+     Theme.DeviceDefault.Dialog.Alert. White text, since the Iron 2 dialog is
+     dark even over light app themes. aapt2 merges overlay styles, so the
+     original minimum-width items stay. -->
+<resources>
+    <style name="ThemeOverlay.Material.Dialog.Alert">
+        <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
+        <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
+        <item name="windowBackground">@color/transparent</item>
+        <item name="windowElevation">0dp</item>
+        <item name="windowTitleStyle">@style/DialogWindowTitle.DeviceDefault</item>
+        <item name="alertDialogStyle">@style/AlertDialog.DeviceDefault</item>
+        <item name="textColorPrimary">@color/primary_text_holo_dark</item>
+        <item name="textColorSecondary">@color/secondary_text_holo_dark</item>
+        <item name="textColorAlertDialogListItem">@color/primary_text_holo_dark</item>
+        <item name="textColorHint">#ffc1c1c1</item>
+        <item name="listChoiceIndicatorSingle">@drawable/zz_ef44_pt_btn_radio_holo_dark</item>
+        <item name="listChoiceIndicatorMultiple">@drawable/zz_ef44_pt_btn_check_holo_dark</item>
+        <item name="listChoiceBackgroundIndicator">@drawable/zz_ef44_pt_list_selector_holo_dark</item>
+    </style>
+</resources>

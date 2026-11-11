@@ -72,7 +72,7 @@ PRODUCT_COPY_FILES += \
 	device/pantech/ef52/thermald/thermald-8064ab_ef52.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermald-8064ab.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=360
+	ro.sf.lcd_density=320
 
 # Inherit from msm8960-common
 $(call inherit-product, device/pantech/msm8960-common/msm8960.mk)
@@ -87,6 +87,39 @@ PRODUCT_PACKAGES += libril_ef52
 
 # VEGA resources (apps, sounds, fonts, wallpapers, VEGA Iron specs)
 $(call inherit-product, device/pantech/ef52/vega/vega.mk)
+
+# Bluetooth profiles. Android 13's AdapterService starts a profile only when
+# its bluetooth.profile.*.enabled property is true; without any, only GATT
+# ran: devices paired but A2DP/HFP/HID never connected ("연결" did nothing).
+# Classic profiles of the WCN3660 (BT 4.0, no LE Audio).
+PRODUCT_VENDOR_PROPERTIES += \
+    bluetooth.profile.a2dp.source.enabled=true \
+    bluetooth.profile.avrcp.target.enabled=true \
+    bluetooth.profile.bas.client.enabled=true \
+    bluetooth.profile.gatt.enabled=true \
+    bluetooth.profile.hfp.ag.enabled=true \
+    bluetooth.profile.hid.device.enabled=true \
+    bluetooth.profile.hid.host.enabled=true \
+    bluetooth.profile.map.server.enabled=true \
+    bluetooth.profile.opp.enabled=true \
+    bluetooth.profile.pan.nap.enabled=true \
+    bluetooth.profile.pan.panu.enabled=true \
+    bluetooth.profile.pbap.server.enabled=true
+
+# Setup wizard: LineageOS's own, also with GApps flashed afterwards (user's
+# choice). LineageSetupWizard finishes at once when Google's SetupWizard is
+# installed (hasGMS), so that one is kept off the users (sysconfig).
+PRODUCT_COPY_FILES += \
+    device/pantech/ef52/configs/sysconfig/ef52-lineage-setupwizard.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/ef52-lineage-setupwizard.xml
+
+# VEGA camera dialog pieces (ef52-port/camera, RRO; the APK is unchanged)
+PRODUCT_PACKAGES += Ef52VegaCameraOverlay
+
+# Verbose boot: boot log lines over the boot animation (fixes-ef52.py)
+PRODUCT_PRODUCT_PROPERTIES += ro.vega.verbose_boot=true
+
+# Settings home: 15dp gap under a folded category, as on the Iron 2
+PRODUCT_PRODUCT_PROPERTIES += ro.vega.home_fold_gap=true
 
 # ef52 (Adreno 320) SurfaceFlinger GPU composition: framebuffer EGLImage
 # cache >= FramebufferSurface buffers, own texture + FBO per output buffer

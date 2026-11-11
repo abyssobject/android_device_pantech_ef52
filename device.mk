@@ -121,6 +121,10 @@ PRODUCT_PRODUCT_PROPERTIES += ro.vega.verbose_boot=true
 # Settings home: 15dp gap under a folded category, as on the Iron 2
 PRODUCT_PRODUCT_PROPERTIES += ro.vega.home_fold_gap=true
 
+# Bluetooth music: A2DP software queue 20 RTP frames (~87ms, AOSP 10 = ~43ms)
+# against UNDERFLOW when audioserver stalls (fixes-ef52.py, BT audio HAL)
+PRODUCT_VENDOR_PROPERTIES += ro.vega.bt_a2dp_mq_frames=20
+
 # ef52 (Adreno 320) SurfaceFlinger GPU composition: framebuffer EGLImage
 # cache >= FramebufferSurface buffers, own texture + FBO per output buffer
 PRODUCT_SYSTEM_PROPERTIES += \
